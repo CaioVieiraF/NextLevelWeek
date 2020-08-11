@@ -47,7 +47,7 @@ const CreatePoint = () => {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(position => {
-            const {latitude, longitude} = position.coords;
+            const { latitude, longitude } = position.coords;
 
             setInitialPos([latitude, longitude]);
         });
@@ -60,10 +60,12 @@ const CreatePoint = () => {
     }, []);
 
     useEffect(() => {
-        axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response => {
-            const ufInitials = response.data.map(uf => uf.sigla);
-            setUF(ufInitials);
-        });
+        axios.get<IBGEUFResponse[]>(
+            'https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+            .then(response => {
+                const ufInitials = response.data.map(uf => uf.sigla);
+                setUF(ufInitials);
+            });
     }, []);
 
     useEffect(() => {
@@ -174,24 +176,24 @@ const CreatePoint = () => {
                     </div>
 
                     <div className="field-group">
-                    <div className="field">
-                        <label htmlFor="email">E-mail</label>
-                        <input
-                            type="email"
-                            name="email"
-                            id="email"
-                            onChange={handleInputChange}
-                        />
-                    </div>
-                    <div className="field">
-                        <label htmlFor="whatsapp">Whatsapp</label>
-                        <input
-                            type="text"
-                            name="whatsapp"
-                            id="whatsapp"
-                            onChange={handleInputChange}
-                        />
-                    </div>
+                        <div className="field">
+                            <label htmlFor="email">E-mail</label>
+                            <input
+                                type="email"
+                                name="email"
+                                id="email"
+                                onChange={handleInputChange}
+                            />
+                        </div>
+                        <div className="field">
+                            <label htmlFor="whatsapp">Whatsapp</label>
+                            <input
+                                type="text"
+                                name="whatsapp"
+                                id="whatsapp"
+                                onChange={handleInputChange}
+                            />
+                        </div>
                     </div>
                 </fieldset>
 
@@ -203,10 +205,10 @@ const CreatePoint = () => {
 
                     <Map center={initialPos} zoom={15} onClick={handleMapClick}>
                         <TileLayer
-                        attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                            attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         />
-                        <Marker position={selectedLoc}/>
+                        <Marker position={selectedLoc} />
                     </Map>
 
                     <div className="field-group">
@@ -254,8 +256,8 @@ const CreatePoint = () => {
                                 onClick={() => handleSelectedItem(item.id)}
                                 className={selectedItens.includes(item.id) ? 'selected' : ''}
                             >
-                            <img src={item.image_url} alt={item.title}/>
-                            <span>{item.title}</span>
+                                <img src={item.image_url} alt={item.title} />
+                                <span>{item.title}</span>
                             </li>
                         ))}
                     </ul>
